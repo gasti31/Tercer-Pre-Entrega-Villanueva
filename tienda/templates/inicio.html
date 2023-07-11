@@ -1,3 +1,8 @@
+{%extends "padre.html"%}
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+<script src="{% static 'js/scripts.js' %}"></script>
+{% block contenidoquecambia%}
 <h1>Tienda en línea</h1>
 
 <form method="post" action="{% url 'buscar' %}">
@@ -11,3 +16,4 @@
     <li>{{ producto.nombre }} - {{ producto.precio }}</li>
     {% endfor %}
 </ul>
+{%endblock%}
