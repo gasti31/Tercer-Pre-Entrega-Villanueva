@@ -1,0 +1,22 @@
+{%extends "padre.html"%}
+{% block contenidoquecambia%}
+<h1>Buscar Producto</h1>
+
+<form method="post" action="{% url 'buscar-producto' %}">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit">Buscar</button>
+</form>
+
+<h2>Resultados de búsqueda</h2>
+
+{% if productos %}
+    <ul>
+        {% for producto in productos %}
+            <li>{{ producto.nombre }} - {{ producto.precio }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No se encontraron productos.</p>
+{% endif %}
+{% endblock %}
