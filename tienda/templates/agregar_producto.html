@@ -1,7 +1,7 @@
 {%extends "padre.html"%}
 {% block contenidoquecambia%}
 <form method="post" action="{% url 'agregar-producto' %}">{% csrf_token %}
-    {{ formulario.as_p }}
+<table>{{ formulario.as_p }}</table>
     <input type="submit" value = "Agregar Producto">
 </form>
 {%endblock%}

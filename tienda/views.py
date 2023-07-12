@@ -37,10 +37,10 @@ def buscar_producto(request):
     
     return render(request, 'buscar_producto.html', {'formulario': formulario})
 
-def agregar_producto(request):
+"""def agregar_producto(request):
     if request.method == 'POST':
         formulario = FormularioProducto(request.POST)
-        if formulario.is_valid():
+        if formulario.is_valid:
             # Guarda el producto en la base de datos
             producto = formulario.save()
             # Redirige a la página de detalles del producto recién creado
@@ -48,5 +48,26 @@ def agregar_producto(request):
     else:
         formulario = FormularioProducto()
     
+    return render(request, 'agregar_producto.html', {'formulario': formulario})"""
+    
+def agregar_producto(request):
+    if request.method == 'POST':
+        formulario = FormularioProducto(request.POST)
+
+        if formulario.is_valid():
+            informacion = formulario.cleaned_data
+            producto = Producto(
+                nombre=informacion['nombre'],
+                precio=informacion['precio'],
+                descripcion=informacion['descripcion'],
+                categoria=informacion['categoria'],
+            )
+            producto.save()
+
+            return render(request,"inicio.html")
+    else:
+        formulario = FormularioProducto()
+
     return render(request, 'agregar_producto.html', {'formulario': formulario})
+
 
