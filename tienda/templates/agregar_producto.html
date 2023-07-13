@@ -1,7 +1,17 @@
 {%extends "padre.html"%}
 {% block contenidoquecambia%}
+{% if formulario.errors %}
+        <p style="color: red;"> Están mal los datos, revisar</p>
+    {% endif %}
 <form method="post" action="{% url 'agregar-producto' %}">{% csrf_token %}
-<table>{{ formulario.as_p }}</table>
-    <input type="submit" value = "Agregar Producto">
+<table>{{ formulario.as_table }}</table>
+    <input type="submit" value="Submit"/>
 </form>
 {%endblock%}
+
+
+
+
+
+
+
